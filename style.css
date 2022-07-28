@@ -1,0 +1,123 @@
+* {padding: 0; margin: 0; border: 0;}
+*,*:before,*:after{ -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+:focus,:active{outline: none}
+a:focus,a:active{otline: none}
+nav,footer,header,aside{display: block;}
+html,body{ height: 100%; width: 100%; font-size: 100%; line-height: 1;font-size: 14px;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
+input,button,textarea{font-family: inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer}
+button::-moz-focus-inner{padding: 0; border: 0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size: inherit; font-weight: 400;}
+
+    
+html {
+    font-size: 16px;
+}
+body {
+    font-family: 'Montserrat';
+    font-size:29px;
+}
+
+.container {
+    max-width: 1000px;
+    padding: 0 15px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+.main__content {
+    animation: gradient 5s linear infinite alternate;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main__title {
+    font-size: 2.5rem;
+    margin: 0px 0px 30px 0px;
+    text-align: center;
+}
+
+.main__text {
+    margin: 0px 0px 30px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.main__text span {
+    cursor: pointer;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+}
+
+.main__button {
+    background-color: rgba(255  ,255, 255, 0.8);
+    border-radius: 5px;
+    width:90px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+.main__button:hover {   
+    background-color:rgb(171, 161, 154, 0.3)
+}
+
+.main__button:focus {
+    box-shadow: 0 0 0 0.2rem rgb(216 217 219 / 50%);
+}
+
+
+@keyframes gradient {
+    
+    20% { color: rgb(87, 79, 79) }
+    
+    40% { color: rgb(113, 102, 102) }
+    
+    60% { color: rgb(149, 121, 121) }
+    
+    80% {color: rgb(187, 187, 187) }
+   
+    100% { color: rgb(40, 19, 19) }
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+@media screen and (max-width: 992px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 767px) {
+
+}
+@media screen and (max-width: 576px) {
+    .main__text {
+        font-size: 60%;
+    }
+    html {
+        font-size: 9px;
+    }
+}
