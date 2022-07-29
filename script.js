@@ -1,26 +1,52 @@
-const main_btn = document.querySelector('.main__button')
-const main_text = document.querySelector('.main__text')
-const main = document.querySelector('.main')
-
-
+let main_btn = document.querySelector('.main__button')
+let main_text = document.querySelector('.main__text')
+let main = document.querySelector('.main')
+let main_content = document.querySelector('.main__content')
+let main_scene = document.querySelector('.main__scene')
+let main_touch;
 
 main_btn.addEventListener('click', switch_color)
 main_btn.addEventListener('click', (event) => {
     event.target.focus()
 })
-main_btn.addEventListener('click', switch_text)
-
-
-
-main_btn.addEventListener('mousedown', (event) => {
-    event.preventDefault()
-})
+main_btn.addEventListener('click', first_click)
 
 main_text.addEventListener('click', get_copy)
 
-function switch_text(event) {
-    event.target.textContent = 'Клик!'
-    event.target.removeEventListener('click', switch_text)
+function first_click(event) {
+    this.textContent = 'Клик!'
+    main_touch = document.querySelector('.main__touch')
+
+    main_touch.addEventListener('mouseenter', function (event) {
+        main_content.style.opacity = 0;
+        main_scene.style.display = 'block'
+        main_scene.style.height = '254px'
+        main_touch.addEventListener('mousemove', toucher)
+    })
+
+    main_touch.addEventListener('mouseleave', function (event) {
+        main_content.style.opacity = '1';
+        main_scene.style.display = 'none'
+        alert(document.getComputedStyles(main_content))
+    })
+
+    if (window.screen.width > 767) {
+        main_touch.style.display = 'block'
+    }
+    event.target.removeEventListener('click', first_click)
+}
+
+function toucher(e) {
+    const target = e.target
+
+    let targetCoords = target.getBoundingClientRect();
+    let xCoord = e.clientX - targetCoords.left;
+    let yCoord = e.clientY - targetCoords.top;
+
+    let scewX = xCoord > 45 ? (xCoord % 45) * 1 : -(45 - xCoord) * 1
+    let scewY = yCoord > 45 ? (yCoord % 45) * 1 : -(45 - yCoord) * 1
+    console.log(scewX, scewY)
+    main_scene.style.transform = `skew(${scewX}deg, ${scewY}deg)`
 }
 
 function get_copy(event) {
@@ -56,6 +82,7 @@ function switch_color(event) {
     main_text.append(span)
     main_text.insertAdjacentHTML('beforeend', '<img style = "margin-left: 5px; opacity: 0" src="https://img.icons8.com/material-outlined/24/000000/ok--v1.png"/>')
     wrapper.style.background = getCssValuePrefix() + css_value
+    main_scene.style.background = document.querySelector('.wrapper').style.background
 }
 
 function get_random_gradient() {
@@ -103,3 +130,4 @@ function getCssValuePrefix() {
 function get_random_num(from, to) {
     return Math.floor(from + Math.random() * (to - from + 1))
 }
+
